@@ -20,3 +20,7 @@ Executar o arquivo etl.ipynb
 ## Running Tests
 
 Executar o arquivo test.ipynb
+
+## Wrapping Up
+
+Para este projeto foi utilizado Apache Spark, uma das ferramentas de big data mais importantes no mercado hoje. Tem como vantagens facilitar a manipulação e processamento de grandes conjuntos de dados e implementação de aplicações para análise exploratória de dados.
