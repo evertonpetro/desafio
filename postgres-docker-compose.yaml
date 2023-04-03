@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  database:
+    image: "postgres:11"
+    container_name: database
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_HOST: "${POSTGRES_HOST}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_PORT: "${POSTGRES_PORT}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-U",
+          "${POSTGRES_USER}",
+          "-d",
+          "${POSTGRES_DB}"
+        ]
+      interval: 5s
+      retries: 5
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - etl_network
+
+volumes:
+  pgdata: null
+
+# Create custom network for bridging the containers
+networks:
+  etl_network: null
